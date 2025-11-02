@@ -1,16 +1,42 @@
-# quiz_app
+# Quiz App 🎯
 
-quiz_app
+A Flutter quiz application currently **under development**.
 
-## Getting Started
+🚧 **Note:**  
+The current design is still a work in progress — my main focus at this stage is implementing **Clean Architecture**, organizing project layers, and managing state using **Cubit**.
 
-This project is a starting point for a Flutter application.
+---
 
-A few resources to get you started if this is your first Flutter project:
+## 🧱 Tech Stack
+- Flutter / Dart
+- Clean Architecture
+- Cubit (State Management)
+- Local JSON Data Source
+- Repository Pattern
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+---
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## 🚧 Current Status
+This project is still in progress — the UI design is simple for now because the priority is:
+- Structuring the project properly (presentation, domain, data layers)
+- Handling state management efficiently
+- Working with local JSON questions
+- Applying dependency injection and reusable components
+
+---
+
+## 🎯 Next Steps
+- Improve UI/UX design
+- Add animations and transitions
+- Connect with remote APIs for dynamic questions
+- Add result tracking and leaderboard features
+
+---
+
+## 💡 About
+This project is part of my ongoing learning journey to strengthen my **Flutter architecture and state management** skills.
+
+---
+
+🧍‍♀️ **Developed by:** [Sherin Zaki](https://github.com/Shreen2211)  
+📧 shreen2211@icloud.com
