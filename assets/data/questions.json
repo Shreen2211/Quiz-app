@@ -1,0 +1,14 @@
+[
+  {
+    "id": 1,
+    "question": "What is Flutter?",
+    "answers": ["Framework", "Library", "Programming Language", "Database"],
+    "correctAnswer": 0
+  },
+  {
+    "id": 2,
+    "question": "Which language is used by Flutter?",
+    "answers": ["Kotlin", "Java", "Dart", "Swift"],
+    "correctAnswer": 2
+  }
+]
