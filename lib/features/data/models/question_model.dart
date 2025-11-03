@@ -3,17 +3,24 @@ class Question {
   final String question;
   final List<String> answers;
   final int correctAnswer;
+  final String category;
+  final String level;
+
 
   Question({
     required this.id,
     required this.question,
     required this.answers,
     required this.correctAnswer,
+    required this.category,
+    required this.level,
   });
 
   factory Question.fromJson(Map<String, dynamic> json) {
     return Question(
       id: json['id'],
+      category: json['category'],
+      level: json['level'],
       question: json['question'],
       answers: List<String>.from(json['answers']),
       correctAnswer: json['correctAnswer'],
