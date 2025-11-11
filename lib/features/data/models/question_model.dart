@@ -2,10 +2,9 @@ class Question {
   final int id;
   final String question;
   final List<String> answers;
-  final int correctAnswer;
+  final String correctAnswer; // بدل int خليها String
   final String category;
   final String level;
-
 
   Question({
     required this.id,
@@ -18,12 +17,12 @@ class Question {
 
   factory Question.fromJson(Map<String, dynamic> json) {
     return Question(
-      id: json['id'],
-      category: json['category'],
-      level: json['level'],
-      question: json['question'],
-      answers: List<String>.from(json['answers']),
-      correctAnswer: json['correctAnswer'],
+      id: json['id'] ?? 0,
+      category: json['category'] ?? '',
+      level: json['level'] ?? '',
+      question: json['question'] ?? '',
+      answers: List<String>.from(json['answers'] ?? []),
+      correctAnswer: json['correct_answer'] ?? '', // مهم جداً
     );
   }
 }

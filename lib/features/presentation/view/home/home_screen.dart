@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:quiz_app/core/constants/app_images/app_images.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class HomeScreen extends StatelessWidget {
+import '../../../providers/question_providers.dart';
+import '../quiz/quiz_screen.dart';
+class HomeScreen extends ConsumerWidget {
   const HomeScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context,WidgetRef ref) {
+    final levelsAsync = ref.watch(levelsProvider);
+    final categoriesAsync = ref.watch(categoriesProvider);
     return Scaffold(
       body: Container(
         padding: EdgeInsets.all(10),
@@ -16,7 +21,7 @@ class HomeScreen extends StatelessWidget {
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
             colors: [
-              Color(0xFFFE6B00), // بنفسجي
+              Color(0xFFFE6B00),
               Color(0xFF2575FC),
             ],
           ),
@@ -68,7 +73,7 @@ class HomeScreen extends StatelessWidget {
                             Container(
                               padding: EdgeInsets.symmetric(horizontal: 10, vertical: 4),
                               decoration: BoxDecoration(
-                                color: Colors.white.withOpacity(0.2),
+                                color: Colors.white.withValues(alpha: 0.2),
                                 borderRadius: BorderRadius.circular(12),
                               ),
                               child: Text(
@@ -166,7 +171,7 @@ class HomeScreen extends StatelessWidget {
                                 ),
                                 CircleAvatar(
                                   radius: 16,
-                                  backgroundColor: Colors.white.withOpacity(0.3),
+                                  backgroundColor: Colors.white.withValues(alpha: 0.3),
                                   child: Icon(Icons.more_horiz, color: Colors.white),
                                 ),
                               ],
@@ -176,7 +181,7 @@ class HomeScreen extends StatelessWidget {
                               style: TextStyle(color: Colors.white70, fontSize: 14),
                             ),
                             LinearProgressIndicator(
-                              value: 9 / 14, // ✅ النسبة
+                              value: 9 / 14,
                               minHeight: 8,
                               borderRadius: BorderRadius.circular(10),
                               backgroundColor: Colors.white.withValues(alpha: 0.2),
@@ -196,7 +201,7 @@ class HomeScreen extends StatelessWidget {
               Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
-                  'Quiz Topic',
+                  'Quiz Category',
                   style: TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
@@ -204,44 +209,31 @@ class HomeScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(
-                height: 150,
-                child: ListView.builder(
-                  itemCount: 6,
-                  scrollDirection: Axis.horizontal,
-                  itemBuilder: (context, index) {
-                    return Column(
-                      children: [
-                        Container(
-                          margin: EdgeInsets.all(10),
-                          width: 80,
-                          height: 80,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
-                              gradient: LinearGradient(
-                                colors: [Color(0xFFB388FF), Color(0xFF8C9EFF)],
-                                begin: Alignment.topLeft,
-                                end: Alignment.bottomRight,
-                              ),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.black26,
-                                  blurRadius: 8,
-                                  offset: Offset(2, 4),
+              categoriesAsync.when(
+                loading: () => const CircularProgressIndicator(),
+                error: (e, s) => Text('Error: $e'),
+                data:(category)=> SizedBox(
+                  height: 150,
+                  child:  Row(
+                    children: category.map((category) => Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Column(
+                        children: [
+                          ElevatedButton(
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (_) => QuizScreen(isLevel: false,category: category,),
                                 ),
-                              ],
-                            ),
-                          child: InkWell(
-                            onTap: () {
-                              print('object');
+                              );
                             },
-                            child: Icon(Icons.access_alarm),
+                            child: Text(category),
                           ),
-                        ),
-                        Text('data'),
-                      ],
-                    );
-                  },
+                        ],
+                      ),
+                    )).toList(),
+                  ),
                 ),
               ),
               Align(
@@ -255,93 +247,27 @@ class HomeScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              GridView(
-                shrinkWrap: true,
-                physics: NeverScrollableScrollPhysics(),
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                    crossAxisSpacing: 15,
-                    mainAxisSpacing: 10
-                ),
-                children: [
-                  InkWell(
-                    onTap: (){
-                      print('object2');
-                    },
-                    child: Container(
-                      padding: EdgeInsets.all(10),
-                      margin: EdgeInsets.all(10),
-                      width: 80,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                        gradient: LinearGradient(
-                          colors: [Color(0xFFB388FF), Color(0xFF8C9EFF)],
-                          begin: Alignment.topLeft,
-                          end: Alignment.bottomRight,
-                        ),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black26,
-                            blurRadius: 8,
-                            offset: Offset(2, 4),
+              levelsAsync.when(
+                loading: () => const CircularProgressIndicator(),
+                error: (e, s) => Text('Error: $e'),
+                data:(level)=> SizedBox(
+                  height: 150,
+                  child:  Row(
+                    children: level.map((level) => Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Column(
+                        children: [
+                          ElevatedButton(
+                            onPressed: () {
+                             Navigator.push(context, MaterialPageRoute(builder: (context) => QuizScreen(isLevel: true,level: level,)));
+                            },
+                            child: Text(level),
                           ),
                         ],
                       ),
-                      child: Column(
-                        spacing: 10,
-                        children: [
-                          Image.asset(AppImages.logo,scale: 4),
-                          Text('data'),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text('data \ndata'),
-                             Icon(Icons.arrow_forward_ios)
-                            ],
-                          )
-                        ],
-                      ),
-                    ),
-                  ),InkWell(
-                    onTap: (){
-                      print('object2');
-                    },
-                    child: Container(
-                      padding: EdgeInsets.all(10),
-                      margin: EdgeInsets.all(10),
-                      width: 80,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                        gradient: LinearGradient(
-                          colors: [Color(0xFFB388FF), Color(0xFF8C9EFF)],
-                          begin: Alignment.topLeft,
-                          end: Alignment.bottomRight,
-                        ),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black26,
-                            blurRadius: 8,
-                            offset: Offset(2, 4),
-                          ),
-                        ],
-                      ),
-                      child: Column(
-                        spacing: 10,
-                        children: [
-                          Image.asset(AppImages.logo,scale: 4),
-                          Text('data'),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text('data \ndata'),
-                             Icon(Icons.arrow_forward_ios)
-                            ],
-                          )
-                        ],
-                      ),
-                    ),
+                    )).toList(),
                   ),
-                ],
+                ),
               ),
             ],
           ),
