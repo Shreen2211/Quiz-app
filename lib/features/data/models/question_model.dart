@@ -22,7 +22,8 @@ class Question {
       level: json['level'] ?? '',
       question: json['question'] ?? '',
       answers: List<String>.from(json['answers'] ?? []),
-      correctAnswer: json['correct_answer'] ?? '', // مهم جداً
+      correctAnswer: json['current_answer'] ?? '', // مهم جداً
     );
   }
+
 }

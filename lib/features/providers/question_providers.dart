@@ -10,7 +10,7 @@ final questionLocalDataSourceProvider = Provider<QuestionLocalDataSource>((ref) 
 });
 
 final currentQuestionIndexProvider = StateProvider<int>((ref) => 0);
-final selectedAnswerIndexProvider = StateProvider<int?>((ref) => null);
+final selectedOptionProvider = StateProvider<String?>((ref) => null);
 
 /// FutureProvider لكل Levels المتاحة
 final levelsProvider = FutureProvider<List<String>>((ref) async {
