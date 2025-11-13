@@ -10,7 +10,7 @@ The current design is still a work in progress — my main focus at this stage i
 ## 🧱 Tech Stack
 - Flutter / Dart
 - Clean Architecture
-- Cubit (State Management)
+- Riverpod (State Management)
 - Local JSON Data Source
 - Repository Pattern
 
