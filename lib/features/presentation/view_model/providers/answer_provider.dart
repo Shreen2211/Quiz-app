@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/legacy.dart';
 
-import '../data/models/answer_model.dart';
+import '../../../data/models/answer_model.dart';
 
 class AnswerNotifier extends StateNotifier<AnswerState> {
   AnswerNotifier() : super(AnswerState());

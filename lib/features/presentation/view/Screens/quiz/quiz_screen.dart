@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../../../../core/constants/color/color_const.dart';
-import '../../../providers/answer_provider.dart';
-import '../../../providers/question_providers.dart';
+import '../../../../../core/constants/color/color_const.dart';
+import '../../../view_model/providers/answer_provider.dart';
+import '../../../view_model/providers/question_providers.dart';
 
 class QuizScreen extends ConsumerWidget {
   final String? quiz;

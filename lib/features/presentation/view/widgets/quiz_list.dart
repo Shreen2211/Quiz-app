@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import '../view/quiz/quiz_screen.dart';
+
+import '../Screens/quiz/quiz_screen.dart';
+
 
 class QuizList extends StatelessWidget {
  final String quizName;

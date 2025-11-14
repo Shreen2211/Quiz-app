@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/services.dart';
-import '../models/question_model.dart';
+import '../../models/question_model.dart';
 
 class QuestionLocalDataSource {
   Future<List<Question>> getQuestions() async {

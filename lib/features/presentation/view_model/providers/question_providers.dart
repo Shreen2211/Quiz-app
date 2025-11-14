@@ -1,7 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_riverpod/legacy.dart';
-import '../data/data_sources/question_local_data_source.dart';
-import '../data/models/question_model.dart';
+import '../../../data/data_sources/local/question_local_data_source.dart';
+import '../../../data/models/question_model.dart';
 
 
 /// Provider للـ Data Source
